@@ -1,0 +1,20 @@
+[project]
+name = "lightstack"
+version = "0.1.0"
+description = "Tools for building and processing multi-filter astrophysical datacubes"
+authors = [{name = "Seu Nome"}]
+dependencies = [
+    "numpy",
+    "astropy",
+    "matplotlib",
+    "reproject",
+    "regions",
+    "scipy"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

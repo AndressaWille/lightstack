@@ -1,10 +1,14 @@
-![Logo](docs/logo.png)
-# Lightstack
+<p align="center">
+  <img src="docs/logo.png" width="120">
+</p>
 
-(JWST and HST)
+<h2 align="center">Lightstack</h2>
+
 
 Pipeline for:
 - cropping FITS images
 - aligning multi-filter data
 - building photometric datacubes
 - PSF matching
+
+(only JWST and HST for now)

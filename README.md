@@ -1,8 +1,6 @@
-<p align="center">
-  <img src="docs/logo.png" width="120">
-</p>
+<img src="docs/logo.png" width="120">
 
-<h2 align="center">Lightstack</h2>
+# Lightstack
 
 
 Pipeline for:

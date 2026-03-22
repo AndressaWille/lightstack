@@ -1,3 +1,4 @@
+![Logo](docs/logo.png)
 # Lightstack
 
 (JWST and HST)

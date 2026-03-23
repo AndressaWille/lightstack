@@ -1,0 +1,1130 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lightstack package &mdash; lightstack 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="lightstack" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            lightstack
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lightstack</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">lightstack package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-lightstack.crop">lightstack.crop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop.crop_from_radec"><code class="docutils literal notranslate"><span class="pre">crop_from_radec()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop.crop_reg"><code class="docutils literal notranslate"><span class="pre">crop_reg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop.crop_using_reference"><code class="docutils literal notranslate"><span class="pre">crop_using_reference()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop.cut_region_2d"><code class="docutils literal notranslate"><span class="pre">cut_region_2d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop.get_sky_bbox_from_cutout"><code class="docutils literal notranslate"><span class="pre">get_sky_bbox_from_cutout()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-lightstack.datacube">lightstack.datacube module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.datacube.align_reproject_fits"><code class="docutils literal notranslate"><span class="pre">align_reproject_fits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.datacube.build_datacube"><code class="docutils literal notranslate"><span class="pre">build_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.datacube.build_valid_datacube"><code class="docutils literal notranslate"><span class="pre">build_valid_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.datacube.cut_region_datacube"><code class="docutils literal notranslate"><span class="pre">cut_region_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.datacube.remove_filter"><code class="docutils literal notranslate"><span class="pre">remove_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.datacube.update_cube_header"><code class="docutils literal notranslate"><span class="pre">update_cube_header()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-lightstack.plot">lightstack.plot module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.plot.plot_datacube_filters"><code class="docutils literal notranslate"><span class="pre">plot_datacube_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.plot.plot_psf_grid"><code class="docutils literal notranslate"><span class="pre">plot_psf_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.plot.visualize_fits"><code class="docutils literal notranslate"><span class="pre">visualize_fits()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-lightstack.psf">lightstack.psf module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.psf.apply_kernel"><code class="docutils literal notranslate"><span class="pre">apply_kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.psf.build_kernel"><code class="docutils literal notranslate"><span class="pre">build_kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.psf.psf_match_datacube"><code class="docutils literal notranslate"><span class="pre">psf_match_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.psf.save_kernel"><code class="docutils literal notranslate"><span class="pre">save_kernel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-lightstack.utils">lightstack.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.MJy_sr_to_jy"><code class="docutils literal notranslate"><span class="pre">MJy_sr_to_jy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.filter_id"><code class="docutils literal notranslate"><span class="pre">filter_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.find_ext"><code class="docutils literal notranslate"><span class="pre">find_ext()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.get_filter"><code class="docutils literal notranslate"><span class="pre">get_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.get_pixel_scale"><code class="docutils literal notranslate"><span class="pre">get_pixel_scale()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.infer_filter"><code class="docutils literal notranslate"><span class="pre">infer_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.pick_folder"><code class="docutils literal notranslate"><span class="pre">pick_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.save_fits"><code class="docutils literal notranslate"><span class="pre">save_fits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.utils.sort_fits"><code class="docutils literal notranslate"><span class="pre">sort_fits()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-lightstack">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.align_reproject_fits"><code class="docutils literal notranslate"><span class="pre">align_reproject_fits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.apply_kernel"><code class="docutils literal notranslate"><span class="pre">apply_kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.build_datacube"><code class="docutils literal notranslate"><span class="pre">build_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.build_kernel"><code class="docutils literal notranslate"><span class="pre">build_kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.build_valid_datacube"><code class="docutils literal notranslate"><span class="pre">build_valid_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop_from_radec"><code class="docutils literal notranslate"><span class="pre">crop_from_radec()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop_reg"><code class="docutils literal notranslate"><span class="pre">crop_reg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.crop_using_reference"><code class="docutils literal notranslate"><span class="pre">crop_using_reference()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.cut_region_2d"><code class="docutils literal notranslate"><span class="pre">cut_region_2d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.cut_region_datacube"><code class="docutils literal notranslate"><span class="pre">cut_region_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.find_ext"><code class="docutils literal notranslate"><span class="pre">find_ext()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.get_sky_bbox_from_cutout"><code class="docutils literal notranslate"><span class="pre">get_sky_bbox_from_cutout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.infer_filter"><code class="docutils literal notranslate"><span class="pre">infer_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.plot_datacube_filters"><code class="docutils literal notranslate"><span class="pre">plot_datacube_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.plot_psf_grid"><code class="docutils literal notranslate"><span class="pre">plot_psf_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.psf_match_datacube"><code class="docutils literal notranslate"><span class="pre">psf_match_datacube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.remove_filter"><code class="docutils literal notranslate"><span class="pre">remove_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.save_kernel"><code class="docutils literal notranslate"><span class="pre">save_kernel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.update_cube_header"><code class="docutils literal notranslate"><span class="pre">update_cube_header()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lightstack.visualize_fits"><code class="docutils literal notranslate"><span class="pre">visualize_fits()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lightstack</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">lightstack</a></li>
+      <li class="breadcrumb-item active">lightstack package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/lightstack.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lightstack-package">
+<h1>lightstack package<a class="headerlink" href="#lightstack-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-lightstack.crop">
+<span id="lightstack-crop-module"></span><h2>lightstack.crop module<a class="headerlink" href="#module-lightstack.crop" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop.crop_from_radec">
+<span class="sig-prename descclassname"><span class="pre">lightstack.crop.</span></span><span class="sig-name descname"><span class="pre">crop_from_radec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_arcsec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop.crop_from_radec" title="Permalink to this definition"></a></dt>
+<dd><p>Extract a square cutout from a FITS image centered on a given sky position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the FITS image.</p></li>
+<li><p><strong>ra</strong> (<em>float</em>) – Right Ascension of the center (in degrees).</p></li>
+<li><p><strong>dec</strong> (<em>float</em>) – Declination of the center (in degrees).</p></li>
+<li><p><strong>size_arcsec</strong> (<em>float</em>) – Size of the cutout (in arcseconds). The cutout is square.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>data_cut</strong> (<em>2D numpy array</em>) – Cropped image data.</p></li>
+<li><p><strong>header_cut</strong> (<em>FITS header</em>) – Updated header with corrected WCS reference (CRPIX).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop.crop_reg">
+<span class="sig-prename descclassname"><span class="pre">lightstack.crop.</span></span><span class="sig-name descname"><span class="pre">crop_reg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop.crop_reg" title="Permalink to this definition"></a></dt>
+<dd><p>Crops a FITS image using a DS9 region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the FITS file.</p></li>
+<li><p><strong>region</strong> (<em>regions.Region</em>) – Region object read from a DS9 region file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>data_cut</strong> (<em>numpy.ndarray</em>) – Cropped image data.</p></li>
+<li><p><strong>header_cut</strong> (<em>astropy.io.fits.Header</em>) – Updated FITS header with adjusted CRPIX keywords.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If no image data extension is found in the FITS file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop.crop_using_reference">
+<span class="sig-prename descclassname"><span class="pre">lightstack.crop.</span></span><span class="sig-name descname"><span class="pre">crop_using_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_cutout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop.crop_using_reference" title="Permalink to this definition"></a></dt>
+<dd><p>Crop a FITS image using the sky footprint of a reference cutout.</p>
+<p>This function extracts a region from a target image such that it matches
+the sky coverage (RA/Dec bounding box) of a reference FITS cutout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the target FITS image to be cropped.</p></li>
+<li><p><strong>ref_cutout</strong> (<em>str</em>) – Path to the reference FITS cutout defining the sky region.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em><em>, </em><em>optional</em>) – If provided, saves the cropped FITS to this path.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>data_cut</strong> (<em>2D numpy array</em>) – Cropped image data.</p></li>
+<li><p><strong>header_cut</strong> (<em>FITS header</em>) – Updated header with corrected WCS reference (CRPIX).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop.cut_region_2d">
+<span class="sig-prename descclassname"><span class="pre">lightstack.crop.</span></span><span class="sig-name descname"><span class="pre">cut_region_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop.cut_region_2d" title="Permalink to this definition"></a></dt>
+<dd><p>Cuts a spatial region from a 2D fits image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_file</strong> (<em>str</em>) – Path to the input 2D fits image.</p></li>
+<li><p><strong>x_start</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>x_end</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>y_start</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>y_end</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to the output fits file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the cut fits image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop.get_sky_bbox_from_cutout">
+<span class="sig-prename descclassname"><span class="pre">lightstack.crop.</span></span><span class="sig-name descname"><span class="pre">get_sky_bbox_from_cutout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop.get_sky_bbox_from_cutout" title="Permalink to this definition"></a></dt>
+<dd><p>Get sky bounding box (RA, Dec) from a FITS cutout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fits_cut</strong> (<em>str</em>) – Path to FITS file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ra, dec</strong> – RA and Dec of the four corners</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-lightstack.datacube">
+<span id="lightstack-datacube-module"></span><h2>lightstack.datacube module<a class="headerlink" href="#module-lightstack.datacube" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.datacube.align_reproject_fits">
+<span class="sig-prename descclassname"><span class="pre">lightstack.datacube.</span></span><span class="sig-name descname"><span class="pre">align_reproject_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'interp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.datacube.align_reproject_fits" title="Permalink to this definition"></a></dt>
+<dd><p>Aligns and reprojects FITS images to a common WCS using a reference FITS file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_list</strong> (<em>list</em><em> of </em><em>tuples</em>) – List in the form [(fits_path, filter_name), …].</p></li>
+<li><p><strong>ref_file</strong> (<em>str</em>) – Path to the FITS file used as WCS reference.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Reprojection method:
+- “interp” (default): faster, interpolates values
+- “exact”: slower, conserves flux   –&gt; but reproject_exact has precision issues with resolutions below ~0.05 arcsec, so the results may not be accurate.</p></li>
+<li><p><strong>crop</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pixels to remove from each border after reprojection
+(helps remove edge artifacts from interpolation).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>aligned_list</strong> – List in the form [(aligned_fits_path, filter_name), …].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.datacube.build_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.datacube.</span></span><span class="sig-name descname"><span class="pre">build_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aligned_fits_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.datacube.build_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Builds a 3D datacube from aligned 2D FITS images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aligned_fits_files</strong> (<em>list</em><em> of </em><em>tuples</em>) – [(filename, filter_name), …]</p></li>
+<li><p><strong>reference_file</strong> (<em>str</em>) – FITS file to define WCS and shape.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to save the 3D datacube.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.datacube.build_valid_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.datacube.</span></span><span class="sig-name descname"><span class="pre">build_valid_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_cube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.datacube.build_valid_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Remove empty filters in a datacube, saves the new datacube and returns the valid filter names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the input 3D fits datacube.</p></li>
+<li><p><strong>output_cube</strong> (<em>str</em>) – Path to save the filtered fits.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Minimum flux value to consider a pixel valid.</p></li>
+<li><p><strong>frac_valid</strong> (<em>float</em>) – Minimum fraction of pixels above the threshold to consider the filter valid.</p></li>
+<li><p><strong>Retorna</strong> – </p></li>
+<li><p><strong>-------</strong> – </p></li>
+<li><p><strong>cube_filtered</strong> (<em>np.ndarray</em>) – Datacube with only valid filters.</p></li>
+<li><p><strong>filters_valid</strong> (<em>list</em>) – List of valid filter names.</p></li>
+<li><p><strong>datacube.</strong> (<em>Saves the new</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.datacube.cut_region_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.datacube.</span></span><span class="sig-name descname"><span class="pre">cut_region_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.datacube.cut_region_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Cuts a spatial region from a datacube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the input 3D fits datacube.</p></li>
+<li><p><strong>x_start</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>x_end</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>y_start</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>y_end</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>output_filename</strong> (<em>str</em>) – Path to the output fits file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the cut datacube.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.datacube.remove_filter">
+<span class="sig-prename descclassname"><span class="pre">lightstack.datacube.</span></span><span class="sig-name descname"><span class="pre">remove_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_cube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_to_remove</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.datacube.remove_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Removes a specific filter from a 3D datacube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the original datacube.</p></li>
+<li><p><strong>output_cube</strong> (<em>str</em>) – Path to save the new datacube.</p></li>
+<li><p><strong>filter_to_remove</strong> (<em>str</em>) – Name of the filter to be removed (e.g., ‘F115W’).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.datacube.update_cube_header">
+<span class="sig-prename descclassname"><span class="pre">lightstack.datacube.</span></span><span class="sig-name descname"><span class="pre">update_cube_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redshift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_brightest_pixel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.datacube.update_cube_header" title="Permalink to this definition"></a></dt>
+<dd><p>Update a datacube header with astrophysical metadata.</p>
+<p>By default, creates a new file with suffix ‘_more.fits’
+instead of overwriting the original.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to input datacube.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em><em> or </em><em>None</em>) – Output FITS file. If None, creates ‘&lt;original&gt;_more.fits’.</p></li>
+<li><p><strong>redshift</strong> (<em>float</em><em> or </em><em>None</em>) – Galaxy redshift.</p></li>
+<li><p><strong>ra_center</strong> (<em>float</em><em> or </em><em>None</em>) – Galaxy center coordinates (deg).</p></li>
+<li><p><strong>dec_center</strong> (<em>float</em><em> or </em><em>None</em>) – Galaxy center coordinates (deg).</p></li>
+<li><p><strong>use_brightest_pixel</strong> (<em>bool</em>) – If True, estimate center from brightest pixel.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Overwrite output file if it already exists.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-lightstack.plot">
+<span id="lightstack-plot-module"></span><h2>lightstack.plot module<a class="headerlink" href="#module-lightstack.plot" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.plot.plot_datacube_filters">
+<span class="sig-prename descclassname"><span class="pre">lightstack.plot.</span></span><span class="sig-name descname"><span class="pre">plot_datacube_filters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(15,</span> <span class="pre">15)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">99.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.plot.plot_datacube_filters" title="Permalink to this definition"></a></dt>
+<dd><p>Plot all filters from a datacube as a grid of images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the 3D FITS datacube.</p></li>
+<li><p><strong>ncols</strong> (<em>int</em><em> or </em><em>None</em>) – Number of columns in the grid. If None, a near-square layout is used.</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size.</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – Colormap.</p></li>
+<li><p><strong>norm</strong> (<em>matplotlib.colors.Normalize</em><em> or </em><em>None</em>) – Custom normalization. If None, uses simple_norm.</p></li>
+<li><p><strong>stretch</strong> (<em>str</em>) – Stretch for simple_norm (ignored if norm is provided).</p></li>
+<li><p><strong>min_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>max_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em><em> or </em><em>None</em>) – If provided, saves the figure.</p></li>
+<li><p><strong>show</strong> (<em>bool</em>) – If True, displays the figure.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.plot.plot_psf_grid">
+<span class="sig-prename descclassname"><span class="pre">lightstack.plot.</span></span><span class="sig-name descname"><span class="pre">plot_psf_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">12)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">99.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.plot.plot_psf_grid" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a grid of PSFs from FITS files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory containing PSF FITS files</p></li>
+<li><p><strong>psf_files</strong> (<em>list</em><em>, </em><em>optional</em>) – List of PSF FITS file paths (overrides psf_dir)</p></li>
+<li><p><strong>ncols</strong> (<em>int</em><em> or </em><em>None</em>) – Number of columns in the grid. If None, chosen automatically.</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size</p></li>
+<li><p><strong>norm</strong> (<em>astropy norm</em><em>, </em><em>optional</em>) – Custom normalization</p></li>
+<li><p><strong>stretch</strong> (<em>str</em>) – Stretch for simple_norm (if norm is None)</p></li>
+<li><p><strong>percent</strong> (<em>float</em>) – Percentile for normalization</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – Colormap</p></li>
+<li><p><strong>save_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save the figure</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.plot.visualize_fits">
+<span class="sig-prename descclassname"><span class="pre">lightstack.plot.</span></span><span class="sig-name descname"><span class="pre">visualize_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">99.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.plot.visualize_fits" title="Permalink to this definition"></a></dt>
+<dd><p>Visualizes a FITS file with both pixel and RA/Dec axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the FITS file.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em><em> or </em><em>None</em>) – Path to save the output image. If None, the figure is shown but not saved.</p></li>
+<li><p><strong>stretch</strong> (<em>str</em>) – Stretch type for simple_norm (e.g., ‘linear’, ‘log’, ‘sqrt’).</p></li>
+<li><p><strong>min_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>max_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – Colormap name.</p></li>
+<li><p><strong>xlim</strong> (<em>tuple</em><em> or </em><em>None</em>) – Pixel axis limits.</p></li>
+<li><p><strong>ylim</strong> (<em>tuple</em><em> or </em><em>None</em>) – Pixel axis limits.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-lightstack.psf">
+<span id="lightstack-psf-module"></span><h2>lightstack.psf module<a class="headerlink" href="#module-lightstack.psf" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.psf.apply_kernel">
+<span class="sig-prename descclassname"><span class="pre">lightstack.psf.</span></span><span class="sig-name descname"><span class="pre">apply_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.psf.apply_kernel" title="Permalink to this definition"></a></dt>
+<dd><p>Convolve an image with a given kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>2D array</em>) – </p></li>
+<li><p><strong>kernel</strong> (<em>2D array</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>image_conv</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2D array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.psf.build_kernel">
+<span class="sig-prename descclassname"><span class="pre">lightstack.psf.</span></span><span class="sig-name descname"><span class="pre">build_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.psf.build_kernel" title="Permalink to this definition"></a></dt>
+<dd><p>Build a convolution kernel that transforms psf_source into psf_ref
+using Fourier methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf_source</strong> (<em>2D array</em>) – PSF of the original image.</p></li>
+<li><p><strong>psf_ref</strong> (<em>2D array</em>) – PSF of the reference resolution.</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em>) – Shape (Ny, Nx) of the final kernel/image.</p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – Regularization parameter to avoid division by zero.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>kernel</strong> – Convolution kernel.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2D array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.psf.psf_match_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.psf.</span></span><span class="sig-name descname"><span class="pre">psf_match_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'F444W'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.psf.psf_match_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Apply PSF matching to a datacube using precomputed convolution kernels.</p>
+<p>Each slice is convolved to match the PSF of a reference filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_path</strong> (<em>str</em>) – Path to input datacube FITS.</p></li>
+<li><p><strong>kernel_dir</strong> (<em>str</em>) – Directory containing kernel FITS files.</p></li>
+<li><p><strong>ref_filter</strong> (<em>str</em>) – Reference filter (e.g., “F444W”).</p></li>
+<li><p><strong>output_path</strong> (<em>str</em><em> or </em><em>None</em>) – Output FITS file. If None, adds ‘_psfmatched’.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Overwrite output file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output_path</strong> – Path to saved PSF-matched datacube.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.psf.save_kernel">
+<span class="sig-prename descclassname"><span class="pre">lightstack.psf.</span></span><span class="sig-name descname"><span class="pre">save_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.psf.save_kernel" title="Permalink to this definition"></a></dt>
+<dd><p>Save a convolution kernel to a FITS file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel</strong> (<em>2D array</em>) – Convolution kernel.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Output FITS path.</p></li>
+<li><p><strong>header</strong> (<em>fits.Header</em><em> or </em><em>None</em>) – Optional header to attach to the kernel.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-lightstack.utils">
+<span id="lightstack-utils-module"></span><h2>lightstack.utils module<a class="headerlink" href="#module-lightstack.utils" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.MJy_sr_to_jy">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">MJy_sr_to_jy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aligned_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.MJy_sr_to_jy" title="Permalink to this definition"></a></dt>
+<dd><p>Convert FITS images from MJy/sr to Jy/pixel using the PIXAR_SR keyword: Jy/pixel = (MJy/sr) * 1e6 * PIXAR_SR</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>aligned_list</strong> (<em>list</em><em> of </em><em>tuples</em>) – List in the form [(fits_path, filter_name), …].</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>new_list</strong> – List in the form [(new_fits_path, filter_name), …] for the converted files.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.filter_id">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">filter_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.filter_id" title="Permalink to this definition"></a></dt>
+<dd><p>Extracts the numeric part of a filter name for sorting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filt</strong> (<em>str</em>) – Filter name.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>num</strong> – Numeric wavelength identifier. If not found, returns a large value
+so the filter is sorted last.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.find_ext">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">find_ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdul</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.find_ext" title="Permalink to this definition"></a></dt>
+<dd><p>Finds the first FITS extension containing valid image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hdul</strong> (<em>astropy.io.fits.HDUList</em>) – Opened FITS file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ext</strong> – Index of the HDU containing image data. Returns None if not found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.get_filter">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">get_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.get_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Extracts the filter name from a FITS filename using a regular expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – FITS filename.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filt</strong> – Filter identifier (e.g., ‘F150W’, ‘F410M’).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If no filter name is found in the filename.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.get_pixel_scale">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">get_pixel_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.get_pixel_scale" title="Permalink to this definition"></a></dt>
+<dd><p>Compute pixel scale in arcsec/pixel using WCS.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.infer_filter">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">infer_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.infer_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Infers the filter name from a FITS filename.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – FITS filename.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filt</strong> – Inferred filter name.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.pick_folder">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">pick_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.pick_folder" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the instrument folder name based on the filter.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.save_fits">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">save_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.save_fits" title="Permalink to this definition"></a></dt>
+<dd><p>Saves a FITS file to disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>numpy.ndarray</em>) – Image data.</p></li>
+<li><p><strong>header</strong> (<em>astropy.io.fits.Header</em>) – FITS header.</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – Output FITS path.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.utils.sort_fits">
+<span class="sig-prename descclassname"><span class="pre">lightstack.utils.</span></span><span class="sig-name descname"><span class="pre">sort_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.utils.sort_fits" title="Permalink to this definition"></a></dt>
+<dd><p>Reads all FITS files in a folder and sorts them by filter wavelength.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>folder</strong> (<em>str</em>) – Path to the folder containing FITS files.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>fits_sorted</strong> – List in the form [(fits_path, filter_name), …], sorted by filter id.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-lightstack">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lightstack" title="Permalink to this heading"></a></h2>
+<p>Lightstack: Tools for processing, PSF matching, and visualization
+of multi-filter photometric datacubes using astronomical imaging (HST and JWST).</p>
+<p>Main functionalities include:
+- Crop regions
+- Image alignment and photometric datacube construction
+- PSF matching using convolution kernels
+- Visualization of FITS images and datacubes</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.align_reproject_fits">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">align_reproject_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'interp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.align_reproject_fits" title="Permalink to this definition"></a></dt>
+<dd><p>Aligns and reprojects FITS images to a common WCS using a reference FITS file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_list</strong> (<em>list</em><em> of </em><em>tuples</em>) – List in the form [(fits_path, filter_name), …].</p></li>
+<li><p><strong>ref_file</strong> (<em>str</em>) – Path to the FITS file used as WCS reference.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Reprojection method:
+- “interp” (default): faster, interpolates values
+- “exact”: slower, conserves flux   –&gt; but reproject_exact has precision issues with resolutions below ~0.05 arcsec, so the results may not be accurate.</p></li>
+<li><p><strong>crop</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pixels to remove from each border after reprojection
+(helps remove edge artifacts from interpolation).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>aligned_list</strong> – List in the form [(aligned_fits_path, filter_name), …].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.apply_kernel">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">apply_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.apply_kernel" title="Permalink to this definition"></a></dt>
+<dd><p>Convolve an image with a given kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>2D array</em>) – </p></li>
+<li><p><strong>kernel</strong> (<em>2D array</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>image_conv</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2D array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.build_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">build_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aligned_fits_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.build_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Builds a 3D datacube from aligned 2D FITS images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aligned_fits_files</strong> (<em>list</em><em> of </em><em>tuples</em>) – [(filename, filter_name), …]</p></li>
+<li><p><strong>reference_file</strong> (<em>str</em>) – FITS file to define WCS and shape.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to save the 3D datacube.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.build_kernel">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">build_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.build_kernel" title="Permalink to this definition"></a></dt>
+<dd><p>Build a convolution kernel that transforms psf_source into psf_ref
+using Fourier methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf_source</strong> (<em>2D array</em>) – PSF of the original image.</p></li>
+<li><p><strong>psf_ref</strong> (<em>2D array</em>) – PSF of the reference resolution.</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em>) – Shape (Ny, Nx) of the final kernel/image.</p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – Regularization parameter to avoid division by zero.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>kernel</strong> – Convolution kernel.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2D array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.build_valid_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">build_valid_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_cube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.build_valid_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Remove empty filters in a datacube, saves the new datacube and returns the valid filter names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the input 3D fits datacube.</p></li>
+<li><p><strong>output_cube</strong> (<em>str</em>) – Path to save the filtered fits.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Minimum flux value to consider a pixel valid.</p></li>
+<li><p><strong>frac_valid</strong> (<em>float</em>) – Minimum fraction of pixels above the threshold to consider the filter valid.</p></li>
+<li><p><strong>Retorna</strong> – </p></li>
+<li><p><strong>-------</strong> – </p></li>
+<li><p><strong>cube_filtered</strong> (<em>np.ndarray</em>) – Datacube with only valid filters.</p></li>
+<li><p><strong>filters_valid</strong> (<em>list</em>) – List of valid filter names.</p></li>
+<li><p><strong>datacube.</strong> (<em>Saves the new</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop_from_radec">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">crop_from_radec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_arcsec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop_from_radec" title="Permalink to this definition"></a></dt>
+<dd><p>Extract a square cutout from a FITS image centered on a given sky position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the FITS image.</p></li>
+<li><p><strong>ra</strong> (<em>float</em>) – Right Ascension of the center (in degrees).</p></li>
+<li><p><strong>dec</strong> (<em>float</em>) – Declination of the center (in degrees).</p></li>
+<li><p><strong>size_arcsec</strong> (<em>float</em>) – Size of the cutout (in arcseconds). The cutout is square.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>data_cut</strong> (<em>2D numpy array</em>) – Cropped image data.</p></li>
+<li><p><strong>header_cut</strong> (<em>FITS header</em>) – Updated header with corrected WCS reference (CRPIX).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop_reg">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">crop_reg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop_reg" title="Permalink to this definition"></a></dt>
+<dd><p>Crops a FITS image using a DS9 region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the FITS file.</p></li>
+<li><p><strong>region</strong> (<em>regions.Region</em>) – Region object read from a DS9 region file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>data_cut</strong> (<em>numpy.ndarray</em>) – Cropped image data.</p></li>
+<li><p><strong>header_cut</strong> (<em>astropy.io.fits.Header</em>) – Updated FITS header with adjusted CRPIX keywords.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If no image data extension is found in the FITS file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.crop_using_reference">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">crop_using_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_cutout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.crop_using_reference" title="Permalink to this definition"></a></dt>
+<dd><p>Crop a FITS image using the sky footprint of a reference cutout.</p>
+<p>This function extracts a region from a target image such that it matches
+the sky coverage (RA/Dec bounding box) of a reference FITS cutout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the target FITS image to be cropped.</p></li>
+<li><p><strong>ref_cutout</strong> (<em>str</em>) – Path to the reference FITS cutout defining the sky region.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em><em>, </em><em>optional</em>) – If provided, saves the cropped FITS to this path.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>data_cut</strong> (<em>2D numpy array</em>) – Cropped image data.</p></li>
+<li><p><strong>header_cut</strong> (<em>FITS header</em>) – Updated header with corrected WCS reference (CRPIX).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.cut_region_2d">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">cut_region_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.cut_region_2d" title="Permalink to this definition"></a></dt>
+<dd><p>Cuts a spatial region from a 2D fits image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_file</strong> (<em>str</em>) – Path to the input 2D fits image.</p></li>
+<li><p><strong>x_start</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>x_end</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>y_start</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>y_end</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to the output fits file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the cut fits image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.cut_region_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">cut_region_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.cut_region_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Cuts a spatial region from a datacube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the input 3D fits datacube.</p></li>
+<li><p><strong>x_start</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>x_end</strong> (<em>int</em>) – Pixel indices for the x axis.</p></li>
+<li><p><strong>y_start</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>y_end</strong> (<em>int</em>) – Pixel indices for the y axis.</p></li>
+<li><p><strong>output_filename</strong> (<em>str</em>) – Path to the output fits file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the cut datacube.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.find_ext">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">find_ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdul</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.find_ext" title="Permalink to this definition"></a></dt>
+<dd><p>Finds the first FITS extension containing valid image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hdul</strong> (<em>astropy.io.fits.HDUList</em>) – Opened FITS file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ext</strong> – Index of the HDU containing image data. Returns None if not found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.get_sky_bbox_from_cutout">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">get_sky_bbox_from_cutout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.get_sky_bbox_from_cutout" title="Permalink to this definition"></a></dt>
+<dd><p>Get sky bounding box (RA, Dec) from a FITS cutout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fits_cut</strong> (<em>str</em>) – Path to FITS file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ra, dec</strong> – RA and Dec of the four corners</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.infer_filter">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">infer_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.infer_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Infers the filter name from a FITS filename.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – FITS filename.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filt</strong> – Inferred filter name.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.plot_datacube_filters">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">plot_datacube_filters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(15,</span> <span class="pre">15)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">99.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.plot_datacube_filters" title="Permalink to this definition"></a></dt>
+<dd><p>Plot all filters from a datacube as a grid of images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the 3D FITS datacube.</p></li>
+<li><p><strong>ncols</strong> (<em>int</em><em> or </em><em>None</em>) – Number of columns in the grid. If None, a near-square layout is used.</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size.</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – Colormap.</p></li>
+<li><p><strong>norm</strong> (<em>matplotlib.colors.Normalize</em><em> or </em><em>None</em>) – Custom normalization. If None, uses simple_norm.</p></li>
+<li><p><strong>stretch</strong> (<em>str</em>) – Stretch for simple_norm (ignored if norm is provided).</p></li>
+<li><p><strong>min_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>max_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em><em> or </em><em>None</em>) – If provided, saves the figure.</p></li>
+<li><p><strong>show</strong> (<em>bool</em>) – If True, displays the figure.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.plot_psf_grid">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">plot_psf_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">12)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">99.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.plot_psf_grid" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a grid of PSFs from FITS files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory containing PSF FITS files</p></li>
+<li><p><strong>psf_files</strong> (<em>list</em><em>, </em><em>optional</em>) – List of PSF FITS file paths (overrides psf_dir)</p></li>
+<li><p><strong>ncols</strong> (<em>int</em><em> or </em><em>None</em>) – Number of columns in the grid. If None, chosen automatically.</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size</p></li>
+<li><p><strong>norm</strong> (<em>astropy norm</em><em>, </em><em>optional</em>) – Custom normalization</p></li>
+<li><p><strong>stretch</strong> (<em>str</em>) – Stretch for simple_norm (if norm is None)</p></li>
+<li><p><strong>percent</strong> (<em>float</em>) – Percentile for normalization</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – Colormap</p></li>
+<li><p><strong>save_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save the figure</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.psf_match_datacube">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">psf_match_datacube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'F444W'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.psf_match_datacube" title="Permalink to this definition"></a></dt>
+<dd><p>Apply PSF matching to a datacube using precomputed convolution kernels.</p>
+<p>Each slice is convolved to match the PSF of a reference filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_path</strong> (<em>str</em>) – Path to input datacube FITS.</p></li>
+<li><p><strong>kernel_dir</strong> (<em>str</em>) – Directory containing kernel FITS files.</p></li>
+<li><p><strong>ref_filter</strong> (<em>str</em>) – Reference filter (e.g., “F444W”).</p></li>
+<li><p><strong>output_path</strong> (<em>str</em><em> or </em><em>None</em>) – Output FITS file. If None, adds ‘_psfmatched’.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Overwrite output file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output_path</strong> – Path to saved PSF-matched datacube.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.remove_filter">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">remove_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_cube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_to_remove</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.remove_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Removes a specific filter from a 3D datacube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to the original datacube.</p></li>
+<li><p><strong>output_cube</strong> (<em>str</em>) – Path to save the new datacube.</p></li>
+<li><p><strong>filter_to_remove</strong> (<em>str</em>) – Name of the filter to be removed (e.g., ‘F115W’).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.save_kernel">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">save_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.save_kernel" title="Permalink to this definition"></a></dt>
+<dd><p>Save a convolution kernel to a FITS file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel</strong> (<em>2D array</em>) – Convolution kernel.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Output FITS path.</p></li>
+<li><p><strong>header</strong> (<em>fits.Header</em><em> or </em><em>None</em>) – Optional header to attach to the kernel.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.update_cube_header">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">update_cube_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube_fits_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redshift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_brightest_pixel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.update_cube_header" title="Permalink to this definition"></a></dt>
+<dd><p>Update a datacube header with astrophysical metadata.</p>
+<p>By default, creates a new file with suffix ‘_more.fits’
+instead of overwriting the original.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cube_fits_file</strong> (<em>str</em>) – Path to input datacube.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em><em> or </em><em>None</em>) – Output FITS file. If None, creates ‘&lt;original&gt;_more.fits’.</p></li>
+<li><p><strong>redshift</strong> (<em>float</em><em> or </em><em>None</em>) – Galaxy redshift.</p></li>
+<li><p><strong>ra_center</strong> (<em>float</em><em> or </em><em>None</em>) – Galaxy center coordinates (deg).</p></li>
+<li><p><strong>dec_center</strong> (<em>float</em><em> or </em><em>None</em>) – Galaxy center coordinates (deg).</p></li>
+<li><p><strong>use_brightest_pixel</strong> (<em>bool</em>) – If True, estimate center from brightest pixel.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Overwrite output file if it already exists.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lightstack.visualize_fits">
+<span class="sig-prename descclassname"><span class="pre">lightstack.</span></span><span class="sig-name descname"><span class="pre">visualize_fits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fits_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">99.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightstack.visualize_fits" title="Permalink to this definition"></a></dt>
+<dd><p>Visualizes a FITS file with both pixel and RA/Dec axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fits_path</strong> (<em>str</em>) – Path to the FITS file.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em><em> or </em><em>None</em>) – Path to save the output image. If None, the figure is shown but not saved.</p></li>
+<li><p><strong>stretch</strong> (<em>str</em>) – Stretch type for simple_norm (e.g., ‘linear’, ‘log’, ‘sqrt’).</p></li>
+<li><p><strong>min_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>max_percent</strong> (<em>float</em>) – Percentile limits for normalization.</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – Colormap name.</p></li>
+<li><p><strong>xlim</strong> (<em>tuple</em><em> or </em><em>None</em>) – Pixel axis limits.</p></li>
+<li><p><strong>ylim</strong> (<em>tuple</em><em> or </em><em>None</em>) – Pixel axis limits.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="lightstack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Andressa Wille.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

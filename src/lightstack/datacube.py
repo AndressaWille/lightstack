@@ -9,7 +9,7 @@ from reproject import reproject_interp, reproject_exact
 from .utils import find_ext, infer_filter
 
 
-def align_reproject_fits(fits_list, ref_file, method="interp"):
+def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
     """
     Aligns and reprojects FITS images to a common WCS using a reference FITS file.
 
@@ -24,7 +24,11 @@ def align_reproject_fits(fits_list, ref_file, method="interp"):
     method : str, optional
         Reprojection method:
         - "interp" (default): faster, interpolates values
-        - "exact": slower, conserves flux
+        - "exact": slower, conserves flux   --> but reproject_exact has precision issues with resolutions below ~0.05 arcsec, so the results may not be accurate.
+
+    crop : int, optional
+        Number of pixels to remove from each border after reprojection
+        (helps remove edge artifacts from interpolation).
 
     Returns
     -------
@@ -45,7 +49,10 @@ def align_reproject_fits(fits_list, ref_file, method="interp"):
         ext_ref = find_ext(hdul_ref)
         if ext_ref is None:
             raise ValueError(f"No valid image data in reference file '{ref_file}'.")
+
         ref_header = hdul_ref[ext_ref].header
+        ref_wcs = WCS(ref_header)
+        shape_out = hdul_ref[ext_ref].data.shape
 
     aligned_list = []
 
@@ -59,26 +66,42 @@ def align_reproject_fits(fits_list, ref_file, method="interp"):
                 continue
 
             data = hdul[ext].data
-            wcs_in = WCS(hdul[ext].header)
+            header = hdul[ext].header
+            wcs_in = WCS(header)
 
-            unit = hdul[ext].header.get('BUNIT', 'unknown')
+            unit = header.get('BUNIT', 'unknown')
             print(f"Filter {filt}: unit = {unit}")
 
             # Reproject
-            data_aligned, _ = reproj_func((data, wcs_in), ref_header)
+            data_aligned, footprint = reproj_func(
+                (data, wcs_in),
+                ref_wcs,
+                shape_out=shape_out)
 
-            # Build header
-            header_aligned = ref_header.copy()
-            header_aligned.update(WCS(ref_header).to_header())
-            
+            # Crop border (interp method)
+            if crop > 0:
+                data_aligned = data_aligned[crop:-crop, crop:-crop]
+
+                # Adjust WCS
+                wcs_out = ref_wcs.deepcopy()
+                wcs_out.wcs.crpix -= crop
+            else:
+                wcs_out = ref_wcs
+
+            # Header
+            header_aligned = wcs_out.to_header()
+
             ref_filter = infer_filter(ref_file)
-            header_aligned.add_history(f"Reprojected to {ref_filter} using {method} method (reproject package)")
+            header_aligned.add_history(
+                f"Reprojected to {ref_filter} using {method} method (reproject package)")
 
-            # Output name
+            if crop > 0:
+                header_aligned.add_history(f"Cropped {crop} pixels from each border")
+
+            # Save
             suffix = f"_aligned_{method}"
             out_name = os.path.splitext(fpath)[0] + f"{suffix}.fits"
 
-            # Save
             fits.PrimaryHDU(data_aligned, header=header_aligned).writeto(
                 out_name, overwrite=True)
 

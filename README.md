@@ -11,3 +11,5 @@ This is a code with functions for:
 (only JWST and HST for now)
 
 pip install git+https://github.com/AndressaWille/lightstack.git
+
+See the tutorial notebook!

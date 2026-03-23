@@ -1,4 +1,4 @@
-<img src="docs/logo.png" width="120">
+<img src="images/logo.png" width="120">
 
 # Lightstack
 

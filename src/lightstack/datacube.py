@@ -123,6 +123,11 @@ def build_datacube(aligned_fits_files, reference_file, output_path):
         FITS file to define WCS and shape.
     output_path : str
         Path to save the 3D datacube.
+        
+    Returns
+    -------
+    None
+        Saves the cut datacube.
     """
     
     # Open FITS
@@ -281,7 +286,7 @@ def build_valid_datacube(cube_fits_file, output_cube, threshold=0.0, frac_valid=
     frac_valid : float
         Minimum fraction of pixels above the threshold to consider the filter valid.
     
-    Retorna
+    Returns
     -------
     cube_filtered : np.ndarray
         Datacube with only valid filters. 

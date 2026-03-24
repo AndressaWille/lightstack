@@ -12,4 +12,7 @@ This is a code with functions for:
 
 pip install git+https://github.com/AndressaWille/lightstack.git
 
+
+Documentation: https://lightstack.readthedocs.io/en/latest/
+
 See the tutorial notebook!

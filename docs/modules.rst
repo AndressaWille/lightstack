@@ -1,5 +1,5 @@
-lightstack
-==========
+Lightstack documentation
+========================
 
 .. toctree::
    :maxdepth: 4

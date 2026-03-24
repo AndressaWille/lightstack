@@ -1,11 +1,11 @@
 Workflow
 ========
 
-This page illustrates the main steps of the LightStack algorithm.
+This page illustrates the main steps of the Lightstack algorithm.
 
 .. image:: _static/workflow.svg
    :alt: LightStack workflow
-   :width: 600px
+   :width: 800px
    :align: center
    
 Cutouts
@@ -26,10 +26,7 @@ The second stage of the pipeline (``datacube`` module) consists of building a ph
 
 First, all images are aligned and reprojected to a common reference frame. This step requires selecting a reference FITS file (i.e., a specific filter), to which all other images will be matched. It is recommended to choose a filter with a larger pixel scale to minimize information loss during reprojection. After alignment, the images are stacked to construct a 3D data cube with dimensions (RA, Dec, filter).
 
-The data cube header is updated to include additional metadata, such as:
-- the number of filters
-- the list and order of filters
-- the reference filter used for alignment
+The data cube header is updated to include additional metadata, such as: the number of filters, the list and order of filters, the reference filter used for alignment.
 
 Relevant information from the original 2D FITS headers (e.g., WCS and pixel scale) is preserved in the final cube.
 
@@ -60,7 +57,7 @@ In addition to the main pipeline, the package provides auxiliary tools that can 
 
 The ``utils`` module contains additional functions that support the main pipeline. This also includes an unit conversion function (converting fluxes from MJy/sr to Jy/pixel).
 
-See the :mod:`modules` section for implementation details.
+See 'Lightstack documentation' for details.
 
 
 If you encounter any issues with the functions, have suggestions for improvements, or would like to request new features for your specific use case, please feel free to get in touch.

@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.abspath('../src'))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'lightstack'
-copyright = '2026, Andressa Wille'
-author = 'Andressa Wille'
+copyright = '2026, Andressa Wille, Thallis Pessi'
+author = 'Andressa Wille, Thallis Pessi'
 release = '0.1'
 
 # -- General configuration ---------------------------------------------------

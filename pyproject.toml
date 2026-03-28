@@ -2,14 +2,15 @@
 name = "lightstack"
 version = "0.1.0"
 description = "Tools for building and processing multi-filter astrophysical datacubes"
-authors = [{name = "Seu Nome"}]
+authors = [{name = "Andressa Wille, Thallis Pessi"}]
 dependencies = [
     "numpy",
     "astropy",
     "matplotlib",
     "reproject",
     "regions",
-    "scipy"
+    "scipy",
+    "photutils"
 ]
 
 [build-system]

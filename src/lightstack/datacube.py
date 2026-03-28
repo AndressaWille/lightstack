@@ -236,7 +236,7 @@ def cut_region_datacube(cube_fits_file, x_start, x_end, y_start, y_end, output_p
     with fits.open(cube_fits_file) as hdul:
         ext = find_ext(hdul)
         if ext is None:
-            raise ValueError(f"No image data found in {fits_path}")
+            raise ValueError(f"No image data found in {cube_fits_file}")
 
         cube_data = hdul[ext].data
         cube_header = hdul[ext].header
@@ -300,7 +300,7 @@ def build_valid_datacube(cube_fits_file, output_cube, threshold=0.0, frac_valid=
     with fits.open(cube_fits_file) as hdul:
         ext = find_ext(hdul)
         if ext is None:
-            raise ValueError(f"No image data found in {fits_path}")
+            raise ValueError(f"No image data found in {cube_fits_file}")
 
         cube = hdul[ext].data
         header = hdul[ext].header
@@ -325,6 +325,8 @@ def build_valid_datacube(cube_fits_file, output_cube, threshold=0.0, frac_valid=
     # Write new header
     new_header = header.copy()
     new_header["NAXIS3"] = len(filters_valid)
+    new_header['NFILTERS'] = len(filters_valid)
+    new_header['FILTERS'] = ",".join(filters_valid)
 
     for i, f in enumerate(filters_valid):
         new_header[f"FILTER{i+1}"] = f
@@ -360,7 +362,7 @@ def remove_filter(cube_fits_file, output_cube, filter_to_remove):
     with fits.open(cube_fits_file) as hdul:
         ext = find_ext(hdul)
         if ext is None:
-            raise ValueError(f"No image data found in {fits_path}")
+            raise ValueError(f"No image data found in {cube_fits_file}")
 
         cube = hdul[ext].data
         header = hdul[ext].header
@@ -383,6 +385,8 @@ def remove_filter(cube_fits_file, output_cube, filter_to_remove):
     # Write new header
     new_header = header.copy()
     new_header["NAXIS3"] = len(filters_new)
+    new_header['NFILTERS'] = len(filters_new)
+    new_header['FILTERS'] = ",".join(filters_new)
 
     for i, f in enumerate(filters_new):
         new_header[f"FILTER{i+1}"] = f

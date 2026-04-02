@@ -16,6 +16,7 @@ Tools for building and processing multi-filter astrophysical datacubes.
 
 ```bash
 pip install lightstack
+```bash
 
 ## Documentation
 

@@ -1,18 +1,24 @@
-<img src="images/logo.png" width="120">
+<img src="https://raw.githubusercontent.com/AndressaWille/lightstack/master/images/logo.png" width="120">
 
 # Lightstack
 
+Tools for building and processing multi-filter astrophysical datacubes.
 
-This is a code with functions for:
-- cropping FITS images
-- building photometric datacubes
-- PSF matching
+## Features
 
-(only JWST and HST for now)
+- Cropping FITS images  
+- Building photometric datacubes  
+- PSF matching  
 
-pip install git+https://github.com/AndressaWille/lightstack.git
+(Currently supports JWST and HST)
 
+## Installation
 
-Documentation: https://lightstack.readthedocs.io/en/latest/
+```bash
+pip install lightstack
+
+## Documentation
+
+https://lightstack.readthedocs.io/en/latest/
 
 See the tutorial notebook!

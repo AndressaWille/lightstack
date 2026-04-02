@@ -1,8 +1,9 @@
 [project]
 name = "lightstack"
-version = "0.1.0"
+version = "0.1.1"
 description = "Tools for building and processing multi-filter astrophysical datacubes"
-authors = [{name = "Andressa Wille, Thallis Pessi"}]
+readme = "README.md"
+authors = [{name = "Andressa Wille"}, {name="Thallis Pessi"}]
 dependencies = [
     "numpy",
     "astropy",
@@ -12,6 +13,7 @@ dependencies = [
     "scipy",
     "photutils"
 ]
+license = {file = "LICENSE"}
 
 [build-system]
 requires = ["setuptools", "wheel"]

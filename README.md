@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19393439.svg)](https://doi.org/10.5281/zenodo.19393439)
+
 <img src="https://raw.githubusercontent.com/AndressaWille/lightstack/master/images/logo.png" width="120">
 
 # Lightstack

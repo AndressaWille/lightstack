@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "lightstack"
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Wille
+    given-names: Andressa
+  - family-names: Pessi
+    given-names: Thallis
+version: 0.1.1
+doi: 10.5281/zenodo.19393439
+date-released: 2026-04-02

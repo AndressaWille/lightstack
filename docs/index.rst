@@ -17,12 +17,20 @@ Photometric data has become essential in modern astrophysics. These multi-band o
 This package provides tools to build photometric data cubes by organizing filters in wavelength space and stacking them consistently. Although Lightstack was developed and tested using data from the James Webb Space Telescope (JWST) and the Hubble Space Telescope (HST), the methodology may be applicable to any multi-band photometric dataset (with imaging data in FITS format with WCS information).
 
 
-Github
-------
+Install
+-------
 
-Source code: https://github.com/AndressaWille/lightstack
+From PyPI
+~~~~~~~~~
 
+.. code-block:: bash
 
+    pip install lightstack
+
+Source code
+~~~~~~~~~~~
+
+https://github.com/AndressaWille/lightstack
 
 .. toctree::
    :maxdepth: 2

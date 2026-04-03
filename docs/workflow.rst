@@ -48,6 +48,7 @@ The final stage of the pipeline (``psf`` module) consists of homogenizing the sp
 
 This step assumes that the PSFs for each filter are already available as FITS files. The package does not generate PSFs, but provides tools to use them for matching. First, convolution kernels are constructed by selecting a reference PSF. It is recommended to choose the broadest one. Each filter in the data cube is then convolved with its corresponding kernel to match the reference PSF.
 
+If it is necessary to recenter and resample (to a common pixel scale) the PSFs before creating the kernels, these functions are also available.
 
 
 Additional Features

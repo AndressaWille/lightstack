@@ -7,6 +7,7 @@ from astropy.convolution import convolve_fft
 from photutils.centroids import centroid_com
 from scipy.ndimage import shift, zoom
 
+from .utils import find_ext
 
 def centroid_weighted(psf, threshold=1e-4):
     """

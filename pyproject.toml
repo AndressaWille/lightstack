@@ -1,6 +1,6 @@
 [project]
 name = "lightstack"
-version = "0.1.2"
+version = "0.1.3"
 description = "Tools for building and processing multi-filter astrophysical datacubes"
 readme = "README.md"
 authors = [{name = "Andressa Wille"}, {name="Thallis Pessi"}]

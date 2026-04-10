@@ -6,7 +6,7 @@ from astropy.wcs import WCS
 
 from reproject import reproject_interp, reproject_exact
 
-from .utils import find_ext, infer_filter, get_pixel_scale_wcs
+from .utils import find_ext, infer_filter, get_pixel_scale_from_wcs
 
 
 def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):

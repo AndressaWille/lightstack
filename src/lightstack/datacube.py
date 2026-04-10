@@ -6,7 +6,7 @@ from astropy.wcs import WCS
 
 from reproject import reproject_interp, reproject_exact
 
-from .utils import find_ext, infer_filter
+from .utils import find_ext, infer_filter, get_pixel_scale_wcs
 
 
 def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
@@ -24,7 +24,7 @@ def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
     method : str, optional
         Reprojection method:
         - "interp" (default): faster, interpolates values
-        - "exact": slower, conserves flux   --> but reproject_exact has precision issues with resolutions below ~0.05 arcsec, so the results may not be accurate.
+        - "exact": slower   --> but reproject_exact has precision issues with resolutions below ~0.05 arcsec, so the results may not be accurate.
 
     crop : int, optional
         Number of pixels to remove from each border after reprojection
@@ -35,6 +35,7 @@ def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
     aligned_list : list of tuples
         List in the form [(aligned_fits_path, filter_name), ...].
     """
+
 
     # Choose reprojection method
     if method == "exact":
@@ -54,6 +55,9 @@ def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
         ref_wcs = WCS(ref_header)
         shape_out = hdul_ref[ext_ref].data.shape
 
+    # Pixel scale of reference
+    scale_out = get_pixel_scale_from_wcs(ref_wcs)
+
     aligned_list = []
 
     # Loop over all FITS
@@ -65,12 +69,15 @@ def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
                 print(f"No data extension found in {fpath}. Skipping.")
                 continue
 
-            data = hdul[ext].data
+            data = hdul[ext].data.astype(float)
             header = hdul[ext].header
             wcs_in = WCS(header)
 
             unit = header.get('BUNIT', 'unknown')
             print(f"Filter {filt}: unit = {unit}")
+
+            # Pixel scale of input
+            scale_in = get_pixel_scale_from_wcs(wcs_in)
 
             # Reproject
             data_aligned, footprint = reproj_func(
@@ -78,7 +85,14 @@ def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
                 ref_wcs,
                 shape_out=shape_out)
 
-            # Crop border (interp method)
+            # Area correction
+            area_ratio = (scale_out / scale_in)**2
+            data_aligned *= area_ratio
+
+            print(f"Pixel scale in/out: {scale_in:.4f} -> {scale_out:.4f}")
+            print(f"Applied area correction: {area_ratio:.4f}")
+
+            # Crop border
             if crop > 0:
                 data_aligned = data_aligned[crop:-crop, crop:-crop]
 
@@ -90,10 +104,13 @@ def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
 
             # Header
             header_aligned = wcs_out.to_header()
+            header_aligned['BUNIT'] = unit
 
             ref_filter = infer_filter(ref_file)
             header_aligned.add_history(
                 f"Reprojected to {ref_filter} using {method} method (reproject package)")
+            header_aligned.add_history(
+                "Flux corrected by pixel area ratio")
 
             if crop > 0:
                 header_aligned.add_history(f"Cropped {crop} pixels from each border")
@@ -105,10 +122,16 @@ def align_reproject_fits(fits_list, ref_file, method="interp", crop=1):
             fits.PrimaryHDU(data_aligned, header=header_aligned).writeto(
                 out_name, overwrite=True)
 
+            # Flux sanity check
+            sum_in = np.nansum(data)
+            sum_out = np.nansum(data_aligned)
+            print(f"Flux ratio (out/in): {sum_out/sum_in:.4f}")
+
             aligned_list.append((out_name, filt))
             print(f"Saved: {out_name}")
 
     return aligned_list
+
     
     
 def build_datacube(aligned_fits_files, reference_file, output_path):

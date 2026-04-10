@@ -210,7 +210,7 @@ def MJy_sr_to_jy(aligned_list):
 
 def get_pixel_scale(fits_path):
     """
-    Compute pixel scale in arcsec/pixel using WCS.
+    Compute pixel scale in arcsec/pixel using WCS. Assumes square pixels and no significant distortion.
     """
     with fits.open(fits_path) as hdul:
         ext = find_ext(hdul)
@@ -221,3 +221,11 @@ def get_pixel_scale(fits_path):
 
     pixscale = proj_plane_pixel_scales(wcs)[0] * 3600.0
     return pixscale
+    
+    
+def get_pixel_scale_from_wcs(wcs):
+    """
+    Compute pixel scale in arcsec/pixel from a WCS object.
+    Assumes square pixels and no significant distortion.
+    """
+    return proj_plane_pixel_scales(wcs)[0] * 3600.0

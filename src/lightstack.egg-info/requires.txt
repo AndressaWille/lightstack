@@ -1,0 +1,7 @@
+numpy
+astropy
+matplotlib
+reproject
+regions
+scipy
+photutils

@@ -125,8 +125,14 @@ def resample_psf(
             raise ValueError("Provide either zoom_factor OR both psf_pixel_scale and target_pixel_scale")
         zoom_factor = psf_pixel_scale / target_pixel_scale
 
+    if zoom_factor > 1:
+    	raise ValueError("Upsampling not recommended.")
+    
     # Resample
     psf_resampled = zoom(psf, zoom_factor, order=order)
+    
+    # Area correction
+    psf_resampled /= zoom_factor**2
 
     # Ensure odd shape
     if make_odd_shape:
@@ -143,6 +149,7 @@ def resample_psf(
         header["HISTORY"] = "PSF resampled using scipy.ndimage.zoom"
         if target_pixel_scale is not None:
             header["CDELT1"] = (target_pixel_scale / 3600, "deg/pix")
+            header["CDELT2"] = (target_pixel_scale / 3600, "deg/pix")
 
     # Save
     fits.PrimaryHDU(psf_resampled, header=header).writeto(

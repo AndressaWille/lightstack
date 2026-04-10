@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: lightstack
+Version: 0.1.1
+Summary: Tools for building and processing multi-filter astrophysical datacubes
+Author: Andressa Wille, Thallis Pessi
+License: MIT License
+        
+        Copyright (c) 2026 Andressa Wille, Thallis Pessi
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: astropy
+Requires-Dist: matplotlib
+Requires-Dist: reproject
+Requires-Dist: regions
+Requires-Dist: scipy
+Requires-Dist: photutils
+
+<img src="https://raw.githubusercontent.com/AndressaWille/lightstack/master/images/logo.png" width="120">
+
+# Lightstack
+
+Tools for building and processing multi-filter astrophysical datacubes.
+
+## Features
+
+- Cropping FITS images  
+- Building photometric datacubes  
+- PSF matching  
+
+(Currently supports JWST and HST)
+
+## Installation
+
+```bash
+pip install lightstack
+```
+
+## Documentation
+
+https://lightstack.readthedocs.io/en/latest/
+
+See the tutorial notebook!
